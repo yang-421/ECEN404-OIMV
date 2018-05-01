@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>exams</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            font-size: 16px;
+            background-image: url(background.jpg);
+            background-size: cover;
+        }
+
+        .mlogin {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, .2);
+            z-index: 999;
+            text-align: center;
+            padding-top: 15%;
+            line-height: 50px;
+            color: white;
+        }
+
+        .mlogin input {
+            line-height: 20px;
+            margin-left: 10px;
+            color: black;
+            width: 250px;
+            font-size: 14px;
+            padding: 3px 6px;
+        }
+
+        .mlogin button {
+            color: olivedrab;
+            line-height: 20px;
+            padding: 5px 10px;
+            color: black;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .mlogin button:hover {
+            background-color: crimson;
+            font-size: 16px;
+            color: black;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mlogin" id='mlogin'>
+        First name:
+        <input id='mlogin-fname' type="text" name="fname" placeholder="Please enter your first name">
+        <br> Last name:
+        <input id='mlogin-lname' type="text" name="lname" placeholder="Please enter your last name">
+        <br> Student ID:
+        <input id='mlogin-id' type="number" min="0" name="lname" placeholder="Please enter your student ID">
+        <!-- <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input id='mlogin-id' type="number" min="0" name="lname" placeholder="Please enter your student ID"> -->
+        <br>
+        <button id='mlogin-enter'>Enter</button>
+    </div>
+    <script>
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+            return (false);
+        }
+        url = getQueryVariable('url')
+        console.log(url)
+        var mid = localStorage.getItem("mloginId");
+        console.log(mid)
+
+        function hidemLogin() {
+            document.querySelector('#mlogin').style.display = "none"
+        }
+        if (mid) {
+            hidemLogin()
+            let mloginFname = localStorage.getItem('mloginFname');
+            let mloginlname = localStorage.getItem('mloginlname');
+            let mloginId = localStorage.getItem('mloginId');
+            console.log('你的姓名F:' + mloginFname)
+            console.log('你的姓名L:' + mloginlname)
+            console.log('你的ID:' + mloginId)
+            window.location.replace(url);
+        }
+        document.querySelector('#mlogin-enter').addEventListener("click", function () {
+            let mloginFname = document.querySelector('#mlogin-fname').value
+            let mloginlname = document.querySelector('#mlogin-lname').value
+            let mloginId = document.querySelector('#mlogin-id').value
+            if (mloginFname && mloginlname && mloginId) {
+                console.log('ok!!');
+                hidemLogin();
+                localStorage.setItem('mloginFname', mloginFname);
+                localStorage.setItem('mloginlname', mloginlname);
+                localStorage.setItem('mloginId', mloginId);
+                window.location.replace(url);
+            }
+        });
+    </script>
+</body>
+
+</html>

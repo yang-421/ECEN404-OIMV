@@ -1,0 +1,20 @@
+#tips-iframe-box {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  bottom: 0;
+}
+#tips-iframe{
+  height: 360px;
+  width: 700px;
+}
+.tips-iframe-box-btn{
+  width: 120px; 
+  text-align: center;
+  padding: 3px 6px;
+  display: block;
+  background-color: paleturquoise;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
